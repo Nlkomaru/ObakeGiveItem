@@ -10,7 +10,7 @@ plugins {
     kotlin("plugin.serialization") version "1.6.10"
 }
 
-group = "com.noticemc"
+group = "dev.nikomaru"
 version = "1.0-SNAPSHOT"
 
 repositories {
@@ -23,8 +23,8 @@ repositories {
     maven("https://repo.incendo.org/content/repositories/snapshots")
 }
 
-val exposedVersion = "latest.release"
-val cloudVersion = "latest.release"
+val exposedVersion = "0.30.1"
+val cloudVersion = "1.7.0"
 dependencies {
     compileOnly("io.papermc.paper", "paper-api", "1.19-R0.1-SNAPSHOT")
 
@@ -42,11 +42,17 @@ dependencies {
     implementation("org.jetbrains.exposed", "exposed-core", exposedVersion)
     implementation("org.jetbrains.exposed", "exposed-dao", exposedVersion)
     implementation("org.jetbrains.exposed", "exposed-jdbc", exposedVersion)
+    implementation("org.jetbrains.exposed", "exposed-java-time", exposedVersion)
 
     implementation("org.jetbrains.kotlinx", "kotlinx-coroutines-core", "1.6.2")
 
+    implementation("org.jetbrains.kotlinx", "kotlinx-coroutines-core", "1.6.2")
+    implementation("org.jetbrains.kotlinx", "kotlinx-serialization-json", "1.3.3")
+
     implementation("com.github.shynixn.mccoroutine", "mccoroutine-bukkit-api", "2.2.0")
     implementation("com.github.shynixn.mccoroutine", "mccoroutine-bukkit-core", "2.2.0")
+
+    compileOnly ("com.github.Nlkomaru","NoticeItemAPI","v0.0.4")
 }
 
 java {
@@ -74,12 +80,13 @@ tasks {
 
 
 bukkit {
-    name = "Template" // need to change
+    name = "ObakeGiveItem"
     version = "miencraft_plugin_version"
-    website = "https://github.com/Nlkomaru/NoticeTemplate"  // need to change
+    website = "https://github.com/Nlkomaru/ObakeGiveItem"
 
-    main = "com.noticemc.noticetemplate.NoticeTemplate"  // need to change
+    main = "dev.nikomaru.obakegiveitem.ObakeGiveItem"
 
+    depend= listOf("NoticeItem")
     apiVersion = "1.19"
     libraries = listOf("com.github.shynixn.mccoroutine:mccoroutine-bukkit-api:2.2.0",
         "com.github.shynixn.mccoroutine:mccoroutine-bukkit-core:2.2.0")
